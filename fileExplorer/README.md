@@ -19,7 +19,7 @@
 
 
 
-# Functions in LIbrary
+# Functions in Library
 function getListFilesandFolders() {}  
 function listFilesAndFolders(parentFolder, parent) {}  
 function listSubFolders(parentFolder, parent, data) {}  
