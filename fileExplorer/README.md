@@ -3,6 +3,7 @@
  1. Add a menu to the sheet
  2. Allow for folder ID to be passed in a dialog
  3. Scroll through files and folder children and return a list of all objects
+ #### Note - This will timeout after 6 minutes if in container-bound script
 
 # Deploy the standalone as a library
  1. Create a version
