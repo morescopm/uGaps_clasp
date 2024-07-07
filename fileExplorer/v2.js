@@ -1,17 +1,12 @@
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('List Files/Folders')
-    .addItem('List All Files and Folders', 'getListFilesandFolders')
-    .addItem('List Files V2', 'getListFilesandFoldersV2')
-    .addToUi();
-}
-
-function getListFilesandFoldersV2() {
+// Appends to active sheet in row 2 of A:J, then appends details
+function getListFilesandFolders() {
   var folderId = Browser.inputBox('Enter folder ID', Browser.Buttons.OK_CANCEL);
+  // Error handling for invalid folder id
   if (folderId === "" || folderId === "cancel") {
     Browser.msgBox('Folder ID is invalid or operation was canceled.');
     return;
   }
+  // IF folder ID is valid
   const sh = SpreadsheetApp.getActiveSheet();
   const range = sh.getRange('A2:J');
   range.clear();
@@ -28,31 +23,31 @@ function getListFilesandFoldersV2() {
     ]);
   try {
     var parentFolder = DriveApp.getFolderById(folderId);
-    listFilesAndFoldersV2(parentFolder, parentFolder.getName());
+    listFilesAndFolders(parentFolder, parentFolder.getName());
   } catch (e) {
     Logger.log('Error: ' + e.toString());
     Browser.msgBox('Error: ' + e.toString());
   }
 }
 
-function listFilesAndFoldersV2(parentFolder, parent) {
+function listFilesAndFolders(parentFolder, parent) {
   var data = [];
-  listFilesV2(parentFolder, parent, data);
-  listSubFoldersV2(parentFolder, parent, data);
+  listFiles(parentFolder, parent, data);
+  listSubFolders(parentFolder, parent, data);
   flushData(data);
 }
 
-function listSubFoldersV2(parentFolder, parent, data) {
+function listSubFolders(parentFolder, parent, data) {
   var childFolders = parentFolder.getFolders();
   while (childFolders.hasNext()) {
     var childFolder = childFolders.next();
     Logger.log("Folder: " + childFolder.getName());
-    listFilesV2(childFolder, parent, data);
-    listSubFoldersV2(childFolder, parent + "|" + childFolder.getName(), data);
+    listFiles(childFolder, parent, data);
+    listSubFolders(childFolder, parent + "|" + childFolder.getName(), data);
   }
 }
 
-function listFilesV2(fold, parent, data) {
+function listFiles(fold, parent, data) {
   var files = fold.getFiles();
   while (files.hasNext()) {
     var file = files.next();

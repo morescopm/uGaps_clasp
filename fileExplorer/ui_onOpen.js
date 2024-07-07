@@ -1,6 +1,6 @@
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('List Files/Folders')
-    .addItem('Add media by Folder ID', 'getListFilesandFoldersV2')
+    .addItem('List Files V2', 'getListFilesandFolders')
     .addToUi();
 }
