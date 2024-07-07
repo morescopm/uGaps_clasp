@@ -10,6 +10,17 @@
  3. Make note of the library id
 
 # Installation into a Container
- 1. Create a new google sheet
+ 1. Create a new google sheet in browser
+    > sheet.new  
+    > sheets.google.com/create
  2. Add a container script to the project
  3. Select the library
+
+
+
+# Functions in LIbrary
+function getListFilesandFolders() {}
+function listFilesAndFolders(parentFolder, parent) {}
+function listSubFolders(parentFolder, parent, data) {}
+function listFiles(fold, parent, data) {}
+function flushData(data) {}
