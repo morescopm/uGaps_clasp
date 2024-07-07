@@ -1,0 +1,4 @@
+# This file tells clasp to ignore any wildcard character matching like .gitignore
+
+# Ignore any markdown file (ex. Script Readme)
+*.md
